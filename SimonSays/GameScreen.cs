@@ -14,8 +14,8 @@ namespace SimonSays
 {
     public partial class GameScreen : UserControl
     {
-        //TODO: create guess variable to track what part of the pattern the user is at
-        int userGuess = 0; 
+        //Create guess variable to track what part of the pattern the user is at
+        int guessCounter = 0; 
 
 
         public GameScreen()
@@ -48,7 +48,7 @@ namespace SimonSays
                 {
                     greenButton.BackColor = Color.LightGreen;
                     Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     greenButton.BackColor = Color.ForestGreen;
                     Refresh();
                 }
@@ -57,7 +57,7 @@ namespace SimonSays
                 {
                     redButton.BackColor = Color.OrangeRed;
                     Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     redButton.BackColor = Color.DarkRed;
                     Refresh();
                 }
@@ -66,7 +66,7 @@ namespace SimonSays
                 {
                     yellowButton.BackColor = Color.Gold;
                     Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     yellowButton.BackColor = Color.Goldenrod;
                     Refresh();
                 }
@@ -75,13 +75,14 @@ namespace SimonSays
                 {
                     blueButton.BackColor = Color.LightBlue;
                     Refresh();
-                    Thread.Sleep(500);
+                    Thread.Sleep(1000);
                     blueButton.BackColor = Color.DarkBlue;
                     Refresh();
                 }
             }
 
-            //TODO: get guess index value back to 0
+            //Get guess index value back to 0
+            guessCounter = 0;
         }
 
         public void GameOver()
@@ -95,13 +96,108 @@ namespace SimonSays
         //TODO: create one of these event methods for each button
         private void greenButton_Click(object sender, EventArgs e)
         {
-            //TODO: is the value at current guess index equal to a green. If so:
-                // light up button, play sound, and pause
-                // set button colour back to original
-                // add one to the guess index
-                // check to see if we are at the end of the pattern. If so:
-                    // call ComputerTurn() method
-                // else call GameOver method
+            //Is the value in the pattern list at index [guess] equal to a green?
+            // change button color
+            // play sound
+            // refresh
+            // pause
+            // set button colour back to original
+            // add one to the guess variable
+
+            //Check to see if we are at the end of the pattern, (guess is the same as pattern list count).
+            // call ComputerTurn() method
+            // else call GameOver method
+
+            if (Form1.storePattern[guessCounter] == 0)
+            {
+                greenButton.BackColor = Color.LightGreen;
+                Refresh();
+                Thread.Sleep(1000);
+                greenButton.BackColor = Color.ForestGreen;
+                Refresh();
+                guessCounter++;
+            }
+
+            else if (Form1.storePattern.Count == guessCounter)
+            {
+                ComputerTurn();
+            }
+
+            else
+            {
+                GameOver();
+            }
+         
+        }
+
+        private void redButton_Click(object sender, EventArgs e)
+        {
+            if (Form1.storePattern[guessCounter] == 1)
+            {
+                redButton.BackColor = Color.OrangeRed;
+                Refresh();
+                Thread.Sleep(1000);
+                redButton.BackColor = Color.DarkRed;
+                Refresh();
+                guessCounter++;
+            }
+
+            else if (Form1.storePattern.Count == guessCounter)
+            {
+                ComputerTurn();
+            }
+
+            else
+            {
+                GameOver();
+            }
+
+        }
+
+        private void yellowButton_Click(object sender, EventArgs e)
+        {
+            if (Form1.storePattern[guessCounter] == 2)
+            {
+                yellowButton.BackColor = Color.Gold;
+                Refresh();
+                Thread.Sleep(1000);
+                yellowButton.BackColor = Color.Goldenrod;
+                Refresh();
+                guessCounter++;
+            }
+
+            else if (Form1.storePattern.Count == guessCounter)
+            {
+                ComputerTurn();
+            }
+
+            else
+            {
+                GameOver();
+            }
+        }
+
+        private void blueButton_Click(object sender, EventArgs e)
+        {
+            if (Form1.storePattern[guessCounter] == 3)
+            {
+                blueButton.BackColor = Color.LightBlue;
+                Refresh();
+                Thread.Sleep(1000);
+                blueButton.BackColor = Color.DarkBlue;
+                Refresh();
+                guessCounter++;
+            }
+
+            else if (Form1.storePattern.Count == guessCounter)
+            {
+                ComputerTurn();
+            }
+
+            else
+            {
+                GameOver();
+            }
         }
     }
 }
