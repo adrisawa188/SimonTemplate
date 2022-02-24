@@ -15,7 +15,11 @@ namespace SimonSays
     public partial class GameScreen : UserControl
     {
         //Create guess variable to track what part of the pattern the user is at
-        int guessCounter = 0; 
+        int guessCounter = 0;
+
+        //Delays for lighting up buttons
+        int time = 700;
+        int time2 = 200;
 
 
         public GameScreen()
@@ -27,9 +31,9 @@ namespace SimonSays
         {
             //Clear the pattern list from form1, refresh, pause for a bit, and run ComputerTurn()
             Form1.storePattern.Clear();
-            Refresh(); 
-            Thread.Sleep(1500); 
-            ComputerTurn(); 
+            Refresh();
+            Thread.Sleep(1500);
+            ComputerTurn();
         }
 
         private void ComputerTurn()
@@ -44,40 +48,44 @@ namespace SimonSays
             //TODO: create a for loop that shows each value in the pattern by lighting up approriate button
             for (int i = 0; i < Form1.storePattern.Count(); i++)
             {
-                if (Form1.storePattern.Contains(0) )
+                if (Form1.storePattern[i] == 0)
                 {
                     greenButton.BackColor = Color.LightGreen;
                     Refresh();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(time);
                     greenButton.BackColor = Color.ForestGreen;
                     Refresh();
+                    Thread.Sleep(time2);
                 }
 
-                 else if (Form1.storePattern.Contains(1) )
+                else if (Form1.storePattern[i] == 1)
                 {
                     redButton.BackColor = Color.OrangeRed;
                     Refresh();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(time);
                     redButton.BackColor = Color.DarkRed;
                     Refresh();
+                    Thread.Sleep(time2);
                 }
 
-                else if (Form1.storePattern.Contains(2) )
+                else if (Form1.storePattern[i] == 2)
                 {
                     yellowButton.BackColor = Color.Gold;
                     Refresh();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(time);
                     yellowButton.BackColor = Color.Goldenrod;
                     Refresh();
+                    Thread.Sleep(time2);
                 }
 
-                else if (Form1.storePattern.Contains(3) )
+                else if (Form1.storePattern[i] == 3)
                 {
                     blueButton.BackColor = Color.LightBlue;
                     Refresh();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(time);
                     blueButton.BackColor = Color.DarkBlue;
                     Refresh();
+                    Thread.Sleep(time2);
                 }
             }
 
@@ -88,7 +96,7 @@ namespace SimonSays
         public void GameOver()
         {
             //TODO: Play a game over sound
-            
+
             //Close this screen and open the GameOverScreen
             Form1.ChangeScreen(this, new GameOverScreen());
         }
@@ -112,22 +120,27 @@ namespace SimonSays
             {
                 greenButton.BackColor = Color.LightGreen;
                 Refresh();
-                Thread.Sleep(1000);
+                Thread.Sleep(time);
                 greenButton.BackColor = Color.ForestGreen;
                 Refresh();
+                Thread.Sleep(time2);
                 guessCounter++;
-            }
 
-            else if (Form1.storePattern.Count == guessCounter)
-            {
-                ComputerTurn();
             }
 
             else
             {
                 GameOver();
             }
-         
+
+            if (Form1.storePattern.Count == guessCounter)
+            {
+                Thread.Sleep(time);
+                ComputerTurn();
+            }
+
+
+
         }
 
         private void redButton_Click(object sender, EventArgs e)
@@ -136,15 +149,11 @@ namespace SimonSays
             {
                 redButton.BackColor = Color.OrangeRed;
                 Refresh();
-                Thread.Sleep(1000);
+                Thread.Sleep(time);
                 redButton.BackColor = Color.DarkRed;
                 Refresh();
+                Thread.Sleep(time2);
                 guessCounter++;
-            }
-
-            else if (Form1.storePattern.Count == guessCounter)
-            {
-                ComputerTurn();
             }
 
             else
@@ -152,6 +161,11 @@ namespace SimonSays
                 GameOver();
             }
 
+            if (Form1.storePattern.Count == guessCounter)
+            {
+                Thread.Sleep(time);
+                ComputerTurn();
+            }
         }
 
         private void yellowButton_Click(object sender, EventArgs e)
@@ -160,21 +174,23 @@ namespace SimonSays
             {
                 yellowButton.BackColor = Color.Gold;
                 Refresh();
-                Thread.Sleep(1000);
+                Thread.Sleep(time);
                 yellowButton.BackColor = Color.Goldenrod;
                 Refresh();
+                Thread.Sleep(time2);
                 guessCounter++;
-            }
-
-            else if (Form1.storePattern.Count == guessCounter)
-            {
-                ComputerTurn();
             }
 
             else
             {
                 GameOver();
             }
+
+            if (Form1.storePattern.Count == guessCounter)
+            {
+                Thread.Sleep(time);
+                ComputerTurn();
+            }          
         }
 
         private void blueButton_Click(object sender, EventArgs e)
@@ -183,21 +199,23 @@ namespace SimonSays
             {
                 blueButton.BackColor = Color.LightBlue;
                 Refresh();
-                Thread.Sleep(1000);
+                Thread.Sleep(time);
                 blueButton.BackColor = Color.DarkBlue;
                 Refresh();
+                Thread.Sleep(time2);
                 guessCounter++;
-            }
-
-            else if (Form1.storePattern.Count == guessCounter)
-            {
-                ComputerTurn();
             }
 
             else
             {
                 GameOver();
             }
+
+            if (Form1.storePattern.Count == guessCounter)
+            {
+                Thread.Sleep(time);
+                ComputerTurn();
+            }         
         }
     }
 }

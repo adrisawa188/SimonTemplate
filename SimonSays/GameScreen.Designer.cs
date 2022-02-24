@@ -36,7 +36,8 @@
             // 
             // yellowButton
             // 
-            this.yellowButton.BackColor = System.Drawing.Color.Goldenrod;
+            this.yellowButton.BackColor = System.Drawing.Color.Gold;
+            this.yellowButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.yellowButton.Location = new System.Drawing.Point(40, 149);
             this.yellowButton.Name = "yellowButton";
             this.yellowButton.Size = new System.Drawing.Size(110, 110);
@@ -47,6 +48,7 @@
             // blueButton
             // 
             this.blueButton.BackColor = System.Drawing.Color.DarkBlue;
+            this.blueButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
             this.blueButton.Location = new System.Drawing.Point(152, 149);
             this.blueButton.Name = "blueButton";
             this.blueButton.Size = new System.Drawing.Size(110, 110);
@@ -57,6 +59,7 @@
             // redButton
             // 
             this.redButton.BackColor = System.Drawing.Color.DarkRed;
+            this.redButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.OrangeRed;
             this.redButton.Location = new System.Drawing.Point(152, 37);
             this.redButton.Name = "redButton";
             this.redButton.Size = new System.Drawing.Size(110, 110);
@@ -67,6 +70,7 @@
             // greenButton
             // 
             this.greenButton.BackColor = System.Drawing.Color.ForestGreen;
+            this.greenButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen;
             this.greenButton.Location = new System.Drawing.Point(40, 37);
             this.greenButton.Name = "greenButton";
             this.greenButton.Size = new System.Drawing.Size(110, 110);
