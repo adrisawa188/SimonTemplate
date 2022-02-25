@@ -18,8 +18,15 @@ namespace SimonSays
         int guessCounter = 0;
 
         //Delays for lighting up buttons
-        int time = 700;
+        int time = 800;
         int time2 = 200;
+
+        //Sound players
+        SoundPlayer bluePlayer = new SoundPlayer(Properties.Resources.blue);
+        SoundPlayer greenPlayer = new SoundPlayer(Properties.Resources.green);
+        SoundPlayer redPlayer = new SoundPlayer(Properties.Resources.red);
+        SoundPlayer yellowPlayer = new SoundPlayer(Properties.Resources.yellow);
+        SoundPlayer mistakePlayer = new SoundPlayer(Properties.Resources.mistake);
 
 
         public GameScreen()
@@ -50,6 +57,7 @@ namespace SimonSays
             {
                 if (Form1.storePattern[i] == 0)
                 {
+                    greenPlayer.Play();
                     greenButton.BackColor = Color.LightGreen;
                     Refresh();
                     Thread.Sleep(time);
@@ -60,6 +68,7 @@ namespace SimonSays
 
                 else if (Form1.storePattern[i] == 1)
                 {
+                    redPlayer.Play();
                     redButton.BackColor = Color.OrangeRed;
                     Refresh();
                     Thread.Sleep(time);
@@ -70,6 +79,7 @@ namespace SimonSays
 
                 else if (Form1.storePattern[i] == 2)
                 {
+                    yellowPlayer.Play();
                     yellowButton.BackColor = Color.Gold;
                     Refresh();
                     Thread.Sleep(time);
@@ -80,17 +90,28 @@ namespace SimonSays
 
                 else if (Form1.storePattern[i] == 3)
                 {
+                    bluePlayer.Play();
                     blueButton.BackColor = Color.LightBlue;
                     Refresh();
                     Thread.Sleep(time);
                     blueButton.BackColor = Color.DarkBlue;
-                    Refresh();
+                    Refresh(); ;
                     Thread.Sleep(time2);
                 }
             }
 
             //Get guess index value back to 0
             guessCounter = 0;
+
+            //speed up timers to increase dificulty over time 
+            if (time > 100)
+            {
+                time = time - 20; 
+            }
+            if (time2 > 30)
+            {
+                time2 = time2 - 10;
+            }
         }
 
         public void GameOver()
@@ -100,8 +121,7 @@ namespace SimonSays
             //Close this screen and open the GameOverScreen
             Form1.ChangeScreen(this, new GameOverScreen());
         }
-
-        //TODO: create one of these event methods for each button
+      
         private void greenButton_Click(object sender, EventArgs e)
         {
             //Is the value in the pattern list at index [guess] equal to a green?
@@ -118,6 +138,7 @@ namespace SimonSays
 
             if (Form1.storePattern[guessCounter] == 0)
             {
+                greenPlayer.Play();
                 greenButton.BackColor = Color.LightGreen;
                 Refresh();
                 Thread.Sleep(time);
@@ -130,6 +151,8 @@ namespace SimonSays
 
             else
             {
+                mistakePlayer.Play();
+                Thread.Sleep(time);
                 GameOver();
             }
 
@@ -147,6 +170,7 @@ namespace SimonSays
         {
             if (Form1.storePattern[guessCounter] == 1)
             {
+                redPlayer.Play();
                 redButton.BackColor = Color.OrangeRed;
                 Refresh();
                 Thread.Sleep(time);
@@ -158,6 +182,8 @@ namespace SimonSays
 
             else
             {
+                mistakePlayer.Play();
+                Thread.Sleep(time);
                 GameOver();
             }
 
@@ -172,6 +198,7 @@ namespace SimonSays
         {
             if (Form1.storePattern[guessCounter] == 2)
             {
+                yellowPlayer.Play();
                 yellowButton.BackColor = Color.Gold;
                 Refresh();
                 Thread.Sleep(time);
@@ -183,6 +210,8 @@ namespace SimonSays
 
             else
             {
+                mistakePlayer.Play();
+                Thread.Sleep(time);
                 GameOver();
             }
 
@@ -197,6 +226,7 @@ namespace SimonSays
         {
             if (Form1.storePattern[guessCounter] == 3)
             {
+                bluePlayer.Play();
                 blueButton.BackColor = Color.LightBlue;
                 Refresh();
                 Thread.Sleep(time);
@@ -208,6 +238,8 @@ namespace SimonSays
 
             else
             {
+                mistakePlayer.Play();
+                Thread.Sleep(time); 
                 GameOver();
             }
 

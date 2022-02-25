@@ -36,7 +36,7 @@
             // 
             // yellowButton
             // 
-            this.yellowButton.BackColor = System.Drawing.Color.Gold;
+            this.yellowButton.BackColor = System.Drawing.Color.Goldenrod;
             this.yellowButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
             this.yellowButton.Location = new System.Drawing.Point(40, 149);
             this.yellowButton.Name = "yellowButton";
